@@ -351,6 +351,8 @@ jobs:
             cd .circleci/ansible
             echo "inventory.txt file is ------$(cat inventory.txt)"
             ansible-playbook -i inventory.txt deploy-backend.yml
+      - attach_workspace:
+          at: ~/
       - destroy_environment:
           id: ${CIRCLE_WORKFLOW_ID:0:7}
       - revert_migrations:
